@@ -70,29 +70,29 @@ class CalendarSubscriber implements EventSubscriberInterface
       if(!empty($daysOfWeek)) {
         $eventEvent->addOption(
           'daysOfWeek',
-          array_map(function($day){
-            return $day->getDayIndex();
+          array_map(function($dayOfWeek){
+            return $dayOfWeek->getDayIndex();
           }, $daysOfWeek)
         );
 
         $eventEvent->addOption(
           'startTime',
-          '09:00:00'
+          $event->getBeginAt()->format('H:i:s')
         );
 
         $eventEvent->addOption(
           'endTime',
-          '17:00:00'
+          $event->getEndAt()->format('H:i:s')
         );
 
         $eventEvent->addOption(
           'startRecur',
-          '2020-03-19'
+          $event->getBeginAt()->format('Y-m-d')
         );
 
         $eventEvent->addOption(
           'endRecur',
-          '2020-07-31'
+          $event->getEndAt()->format('Y-m-d')
         );
       }
 
