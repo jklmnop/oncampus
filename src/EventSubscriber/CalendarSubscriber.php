@@ -61,39 +61,19 @@ class CalendarSubscriber implements EventSubscriberInterface
        * and: https://github.com/fullcalendar/fullcalendar/blob/master/src/core/options.ts
        */
 
-//      $eventEvent->setOptions([
-//        'backgroundColor' => 'red',
-//        'borderColor' => 'red',
-//      ]);
-
       $daysOfWeek = $event->getDaysOfWeek()->toArray();
       if(!empty($daysOfWeek)) {
-        $eventEvent->addOption(
-          'daysOfWeek',
-          array_map(function($dayOfWeek){
+        $eventEvent->setOptions([
+          'daysOfWeek' => array_map(function($dayOfWeek){
             return $dayOfWeek->getDayIndex();
-          }, $daysOfWeek)
-        );
+          }, $daysOfWeek),
+          'startTime' => $event->getBeginAt()->format('H:i:s'),
+          'endTime' => $event->getEndAt()->format('H:i:s'),
+          'startRecur' => $event->getBeginAt()->format('Y-m-d'),
+          'endRecur' => $event->getEndAt()->format('Y-m-d'),
+          'borderColor' => 'red'
+        ]);
 
-        $eventEvent->addOption(
-          'startTime',
-          $event->getBeginAt()->format('H:i:s')
-        );
-
-        $eventEvent->addOption(
-          'endTime',
-          $event->getEndAt()->format('H:i:s')
-        );
-
-        $eventEvent->addOption(
-          'startRecur',
-          $event->getBeginAt()->format('Y-m-d')
-        );
-
-        $eventEvent->addOption(
-          'endRecur',
-          $event->getEndAt()->format('Y-m-d')
-        );
       }
 
       $eventEvent->addOption(
