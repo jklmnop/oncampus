@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EventRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class Event
      * @ORM\Column(type="string", length=255)
      */
     private $title;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=DayOfWeek::class, inversedBy="events")
+     */
+    private $daysOfWeek;
+
+    public function __construct()
+    {
+        $this->daysOfWeek = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +81,32 @@ class Event
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|DayOfWeek[]
+     */
+    public function getDaysOfWeek(): Collection
+    {
+        return $this->daysOfWeek;
+    }
+
+    public function addDaysOfWeek(DayOfWeek $daysOfWeek): self
+    {
+        if (!$this->daysOfWeek->contains($daysOfWeek)) {
+            $this->daysOfWeek[] = $daysOfWeek;
+        }
+
+        return $this;
+    }
+
+    public function removeDaysOfWeek(DayOfWeek $daysOfWeek): self
+    {
+        if ($this->daysOfWeek->contains($daysOfWeek)) {
+            $this->daysOfWeek->removeElement($daysOfWeek);
+        }
 
         return $this;
     }

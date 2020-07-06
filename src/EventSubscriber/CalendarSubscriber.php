@@ -65,6 +65,37 @@ class CalendarSubscriber implements EventSubscriberInterface
 //        'backgroundColor' => 'red',
 //        'borderColor' => 'red',
 //      ]);
+
+      $daysOfWeek = $event->getDaysOfWeek()->toArray();
+      if(!empty($daysOfWeek)) {
+        $eventEvent->addOption(
+          'daysOfWeek',
+          array_map(function($day){
+            return $day->getDayIndex();
+          }, $daysOfWeek)
+        );
+
+        $eventEvent->addOption(
+          'startTime',
+          '09:00:00'
+        );
+
+        $eventEvent->addOption(
+          'endTime',
+          '17:00:00'
+        );
+
+        $eventEvent->addOption(
+          'startRecur',
+          '2020-03-19'
+        );
+
+        $eventEvent->addOption(
+          'endRecur',
+          '2020-07-31'
+        );
+      }
+
       $eventEvent->addOption(
         'url',
         $this->router->generate('event_show', [

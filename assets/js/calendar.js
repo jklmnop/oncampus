@@ -21,13 +21,14 @@ document.addEventListener('DOMContentLoaded', function() {
         views: {
             listDay: { buttonText: 'Day' },
             listWeek: { buttonText: 'Week' },
-            listMonth: { buttonText: 'Month' }
+            listMonth: { buttonText: 'Month' },
+            listYear: { buttonText: 'Year' }
         },
 
         headerToolbar: {
             left: 'title',
             center: '',
-            right: 'listDay,listWeek,listMonth'
+            right: 'listDay,listWeek,listMonth,listYear'
         },
         eventSources: [
             {
