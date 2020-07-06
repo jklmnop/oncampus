@@ -20,6 +20,16 @@
                 <td>{{ event.endAt ? event.endAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
+                <th>DaysOfWeek</th>
+                <td>
+                    {% if event.daysOfWeek|length > 0 %}
+                        {{ event.daysOfWeek|map(dayOfWeek => "#{dayOfWeek.day}")|join(', ') }}
+                    {% else %}
+                        Not a recurring event
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
                 <th>Title</th>
                 <td>{{ event.title }}</td>
             </tr>

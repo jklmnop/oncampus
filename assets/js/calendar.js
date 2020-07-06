@@ -27,19 +27,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
         headerToolbar: {
             left: 'title',
-            center: '',
+            center: 'prev,next today',
             right: 'listDay,listWeek,listMonth,listYear'
         },
         eventSources: [
             {
                 url: '/fc-load-events',
                 method: "GET",
-                extraParams: {
-                    filters: JSON.stringify({})
-                },
-                failure: () => {
-                    // alert("There was an error while fetching FullCalendar!");
-                },
+                // extraParams: {
+                //     filters: JSON.stringify({})
+                // },
+                // failure: () => {
+                //     // alert("There was an error while fetching FullCalendar!");
+                // },
             },
         ],
         editable: true
