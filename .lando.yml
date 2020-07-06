@@ -1,0 +1,25 @@
+name: whosatlebow
+recipe: lemp
+config:
+  webroot: public
+
+services:
+  appserver:
+    config:
+      vhosts: lando/nginx.conf
+      php: lando/php.ini
+      database: lando/mysql.conf
+
+  database:
+    portforward: 3313
+    creds:
+      user: whosatlebow
+      password: whosatlebow
+      database: whosatlebow
+
+tooling:
+  console:
+    service: appserver
+    cmd: bin/console
+
+# lando composer create-project symfony/website-skeleton tmp && cp -r tmp/. . && rm -rf tmp

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('calendar') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('calendar') }}
+{% endblock %}
+
+{% block title %}Event index{% endblock %}
+
+{% block body %}
+    <a href="{{ path('event_new') }}">Create new</a>
+
+    <div id="calendar"></div>
+{% endblock %}
