@@ -9,6 +9,8 @@ services:
       vhosts: lando/nginx.conf
       php: lando/php.ini
       database: lando/mysql.conf
+  node:
+    type: node:13
 
   database:
     portforward: 3313
@@ -21,5 +23,7 @@ tooling:
   console:
     service: appserver
     cmd: bin/console
+  yarn:
+    service: node
 
 # lando composer create-project symfony/website-skeleton tmp && cp -r tmp/. . && rm -rf tmp
