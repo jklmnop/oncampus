@@ -1,4 +1,4 @@
-name: whosatlebow
+name: oncampus
 recipe: lemp
 config:
   webroot: public
@@ -13,9 +13,9 @@ services:
   database:
     portforward: 3313
     creds:
-      user: whosatlebow
-      password: whosatlebow
-      database: whosatlebow
+      user: oncampus
+      password: oncampus
+      database: oncampus
 
 tooling:
   console:
