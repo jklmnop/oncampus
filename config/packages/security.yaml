@@ -2,42 +2,43 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
-        app_user_provider:
-            entity:
-                class: App\Entity\User
-                property: userId
-#            ldap:
-#                service: Symfony\Component\Ldap\Ldap
-#                base_dn: dc=drexel,dc=edu
-#                search_dn: "CN=lcobldap,OU=Service,OU=Lebow,DC=drexel,DC=edu"
-#                search_password: XZKUMdXD7EpXscYK6GEFrLCfiRoNUssU
-#                default_roles: ROLE_USER
-#                uid_key: sAMAccountName
-#                extra_fields: ['email']
+#        app_user_provider:
+#            entity:
+#                class: App\Entity\User
+#                property: userId
+        my_ldap:
+            ldap:
+                service: Symfony\Component\Ldap\Ldap
+                base_dn: 'DC=drexel,DC=edu'
+                search_dn: 'CN=lcobldap,OU=Service,OU=Lebow,DC=drexel,DC=edu'
+                search_password: XZKUMdXD7EpXscYK6GEFrLCfiRoNUssU
+                default_roles: ROLE_USER
+#                uid_key: name
+#                extra_fields: ['sAMAccountName']
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             anonymous: true
-            lazy: true
-            provider: app_user_provider
-            guard:
-                authenticators:
-                    - App\Security\LoginFormAuthenticator
-#            form_login_ldap:
-#                login_path: login
-#                check_path: login
-#                service: Symfony\Component\Ldap\Ldap
-#                dn_string: 'sAMAccountName={username}'
+#            lazy: true
+#            provider: app_user_provider
+#            guard:
+#                authenticators:
+#                    - App\Security\LoginFormAuthenticator
+            form_login_ldap:
+                login_path: app_login
+                check_path: app_login
+                service: Symfony\Component\Ldap\Ldap
+                dn_string: 'DREXEL\{username}'
             logout:
                 path: app_logout
                 # where to redirect after logout
                 target: event_index
-
-            remember_me:
-                secret: '%kernel.secret%'
-                lifetime: 2592000
+#
+#            remember_me:
+#                secret: '%kernel.secret%'
+#                lifetime: 2592000
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
