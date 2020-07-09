@@ -45,7 +45,7 @@ security:
                 check_path: saml_acs
                 login_path: saml_login
             logout:
-                path: app_logout
+                path: saml_logout
                 # where to redirect after logout
                 target: event_index
 #
