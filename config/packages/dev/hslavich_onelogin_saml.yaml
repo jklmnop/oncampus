@@ -1,0 +1,90 @@
+hslavich_onelogin_saml:
+  # Basic settings
+  idp:
+    entityId: 'https://secure.lndo.site/simplesaml/saml2/idp/metadata.php'
+    singleSignOnService:
+      url: 'https://secure.lndo.site/simplesaml/saml2/idp/SSOService.php'
+      binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
+    singleLogoutService:
+      url: 'https://secure.lndo.site/simplesaml/saml2/idp/SingleLogoutService.php'
+      binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
+    x509cert:
+      MIIErjCCAxYCCQCn3ejolWbtGTANBgkqhkiG9w0BAQsFADCBmDELMAkGA1UEBhMC
+      dXMxFTATBgNVBAgMDHBlbm5zeWx2YW5pYTEVMBMGA1UEBwwMcGhpbGFkZWxwaGlh
+      MSIwIAYDVQQKDBlsZWJvdyBjb2xsZWdlIG9mIGJ1c2luZXNzMRUwEwYDVQQLDAx3
+      ZWIgc2VydmljZXMxIDAeBgkqhkiG9w0BCQEWEWxjYndlYkBkcmV4ZWwuZWR1MB4X
+      DTIwMDExMzE1NDM1MFoXDTMwMDExMjE1NDM1MFowgZgxCzAJBgNVBAYTAnVzMRUw
+      EwYDVQQIDAxwZW5uc3lsdmFuaWExFTATBgNVBAcMDHBoaWxhZGVscGhpYTEiMCAG
+      A1UECgwZbGVib3cgY29sbGVnZSBvZiBidXNpbmVzczEVMBMGA1UECwwMd2ViIHNl
+      cnZpY2VzMSAwHgYJKoZIhvcNAQkBFhFsY2J3ZWJAZHJleGVsLmVkdTCCAaIwDQYJ
+      KoZIhvcNAQEBBQADggGPADCCAYoCggGBALQ7lzVQHIwffa1gAzb34RlED03sqpeZ
+      pbSvgavELcDLiZN44+zK49l32naOaASwmZfK29Elb3GZiMPdrCiio7HyG3et/MHw
+      L8T193zkxYZVFiKtVy3RiFmBCgjMGEfZ1wgJ5/BxzYaLBIUEmM8VIr6SeGN/4jay
+      JnibKT/3sAn0QxUGWQkVlQkRJdgCRNKy+JeHUmxFeL/Imf6YvPetaorA5NNXF7wK
+      yty6Qkn4ivRqpvdd+8JZ5Q2LGIeCc/qiL8AzKXN18/EgY+7bDTLtgnH2eX+jX0xr
+      lCQ/QIqLFxtF471KvbEGg8Ghm6RqcamaPnrTlX/cdxtqG5XQ3LeZ/5GG5X4tcZYx
+      p4QsUVfANJ0ZRtyuIK1myLEywJNuFoX+NAb179IMPlq+rTU8UfCqcdJ1TNpb5HIw
+      DzC0+wCgv2iXOzD7g251GAZBd8UhksAiYxY1jGbzT3LwyeC9G2fpERMYdyF21JiG
+      9MncuR7hF4sJmWJiM7z30zQAHj4uFDvxbQIDAQABMA0GCSqGSIb3DQEBCwUAA4IB
+      gQA5rGL/p/PLVM9YIlwqQBaKqTqJ04v3Vt/qXRWDeKof7GJry4scKu0yi9jvGgZL
+      q0XX7AhkziuWjJ7ghmM7G3muOKIw5Qc2RN2X7w25Yz9cen23oPy58U44IOBbQkfs
+      4YcrsWjB3hGCuK2jBZBAtJRrK4E3p2NM3hf0MJDDYIS5k0LtanKXYf3GZjvNXIen
+      0OeeiunZ+afcQUSjg2gwGsFhr3wDf22/SClWlFvv53+HnS+eWGHjju7qXu7lA+iL
+      adhtSJ0qxqLiFH6d9UZ/tKwVeRGKP5kemlJHRFqDtfeu8qbNAmUAX0zyn0J5IRdY
+      uGmaVKS5JDRnP872kSydLQ2ML1MyWpz9960hM2zXBIIUwYy2PiqsEWWRECFhT83I
+      jXL4v8I+mQKMsLea+stCYyKdWk6b7H7ATeZvhFa9cRxqG5kHZLOxfzHV1nBJQmXO
+      j2kPymSzdCdx8/ShUSBiaW0K3uKQszTm7UpOsqS1J4Ib5Gc7L+jLMPnm8EmcehM7
+      RXo=
+    certFingerprintAlgorithm: sha256
+  sp:
+    entityId: 'https://oncampus.lndo.site/saml/metadata'
+    assertionConsumerService:
+      url: 'https://oncampus.lndo.site/saml/acs'
+      binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'
+    attributeConsumingService:
+      serviceName: 'On Campus'
+      serviceDescription: 'Login via Drexel LDAP via Local SimpleSAMLphp'
+      requestedAttributes:
+        - name: sAMAccountName
+          isRequired: true
+          nameFormat: ''
+          friendlyName: ''
+          attributeValue: {  }
+        - name: mail
+          isRequired: true
+          nameFormat: ''
+          friendlyName: ''
+          attributeValue: {  }
+    singleLogoutService:
+      url: 'https://oncampus.lndo.site/saml/logout'
+      binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
+    privateKey: ''
+  # Optional settings
+  baseurl: null
+  strict: true
+  debug: true
+#  security:
+#    nameIdEncrypted:       false
+#    authnRequestsSigned:   false
+#    logoutRequestSigned:   false
+#    logoutResponseSigned:  false
+#    wantMessagesSigned:    false
+#    wantAssertionsSigned:  false
+#    wantNameIdEncrypted:   false
+#    requestedAuthnContext: true
+#    signMetadata: false
+#    wantXMLValidation: true
+#    signatureAlgorithm: 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256'
+#    digestAlgorithm: 'http://www.w3.org/2001/04/xmlenc#sha256'
+#  contactPerson:
+#    technical:
+#      givenName: 'Tech User'
+#      emailAddress: 'techuser@example.com'
+#    support:
+#      givenName: 'Support User'
+#      emailAddress: 'supportuser@example.com'
+#  organization:
+#    en:
+#      name: 'Example'
+#      displayname: 'Example'
+#      url: 'http://example.com'

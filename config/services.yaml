@@ -37,3 +37,11 @@ services:
               options:
                   protocol_version: 3
                   referrals: false
+
+    Hslavich\OneloginSamlBundle\Controller\SamlController:
+        class: Hslavich\OneloginSamlBundle\Controller\SamlController
+        tags: ['controller.service_arguments']
+        public: true
+        autowire: true
+
+    OneLogin\Saml2\Auth: '@onelogin_auth'

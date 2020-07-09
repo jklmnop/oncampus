@@ -4,12 +4,13 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Hslavich\OneloginSamlBundle\Security\User\SamlUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User implements UserInterface
+class User implements SamlUserInterface
 {
     /**
      * @ORM\Id()
@@ -97,5 +98,10 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function setSamlAttributes(array $attributes)
+    {
+      $this->setUserId(reset($attributes['sAMAccountName']));
     }
 }
