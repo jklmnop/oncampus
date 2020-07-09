@@ -43,5 +43,5 @@ services:
         tags: ['controller.service_arguments']
         public: true
         autowire: true
-
-    OneLogin\Saml2\Auth: '@onelogin_auth'
+        calls:
+            - [setContainer, ["@service_container"]]
